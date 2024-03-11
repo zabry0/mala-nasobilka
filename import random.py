@@ -1,12 +1,29 @@
+#Tento kód generuje 10 příkladů na násobeni dělení sčítání a odečítání s konečným vyhodnocením bodů z 10 (10 příkladů)
+
 import random
 
-# Násobení A a B, vyhodnocení funkce
+# násobení A a B, vyhodnocení funkce
 def nasobeni(a, b):
     vysledek = a * b
     return vysledek
 
+# dělení A a B, vyhodnocení funkce
+def deleni(a, b):
+    vysledek = a / b
+    return vysledek
+
+# sčítání A a B, vyhodnocení funkce
+def scitani(a, b):
+    vysledek = a + b
+    return vysledek
+
+# odečítání A a B, vyhodnocení funkce
+def odecitani(a, b):
+    vysledek = a - b
+    return vysledek
+
 # Výsledek porovnání a pochvala
-def vyhodnoceni(vysledek, porovnani):
+def vyhodnoceni(operace, vysledek, porovnani):
     if vysledek == porovnani:
         print('Ty jsi šikulka')
         return True
@@ -21,10 +38,18 @@ spravne_odpovedi = 0
 for i in range(10):
     x = random.randint(1, 10)
     y = random.randint(1, 10)
-    vysledek = nasobeni(x, y)
-    porovnani = int(input(f'{x} * {y} = '))
+    operace = random.choice(['+', '-', '*', '/'])
+    if operace == '+':
+        vysledek = scitani(x, y)
+    elif operace == '-':
+        vysledek = odecitani(x, y)
+    elif operace == '*':
+        vysledek = nasobeni(x, y)
+    elif operace == '/':
+        vysledek = deleni(x, y)
+    porovnani = int(input(f'{x} {operace} {y} = '))
     
-    if vyhodnoceni(vysledek, porovnani):
+    if vyhodnoceni(operace, vysledek, porovnani):
         spravne_odpovedi += 1
 
 # Počet správných odpovědí
